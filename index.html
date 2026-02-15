@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BulewwTC PRO Store</title>
+<style>
+body{background:#0f0f18;color:#fff;font-family:Arial;margin:0}
+header{padding:15px;background:#111;box-shadow:0 0 15px #b100ff;text-align:center}
+.logo{font-size:28px;color:#d200ff;text-shadow:0 0 10px #d200ff}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px;padding:15px}
+.card{background:#1a1a2e;padding:10px;border-radius:10px;box-shadow:0 0 10px #d200ff;text-align:center}
+button{background:#d200ff;border:none;padding:8px 12px;border-radius:6px;font-weight:bold}
+</style>
+</head>
+<body>
+
+<header>
+<img src="logo.png" width="200"><br>
+<div class="logo">BulewwTC PRO Store</div>
+</header>
+
+<div class="products" id="products"></div>
+
+<script>
+fetch("produk.json")
+.then(res=>res.json())
+.then(data=>{
+  const box=document.getElementById("products");
+  data.forEach(p=>{
+    box.innerHTML+=`
+      <div class="card">
+        <img src="${p.image}" width="100%"><br>
+        <b>${p.name}</b><br>
+        Rp ${p.price}<br><br>
+        <button>Add to Cart</button>
+      </div>
+    `;
+  });
+});
+</script>
+
+</body>
+</html>
